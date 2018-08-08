@@ -149,7 +149,7 @@ func TestMempoolRmBadTx(t *testing.T) {
 
 		// check for the tx
 		for {
-			txs := cs.mempool.Reap(1)
+			txs := cs.mempool.Reap(1, -1)
 			if len(txs) == 0 {
 				emptyMempoolCh <- struct{}{}
 				return
