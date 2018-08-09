@@ -3,13 +3,12 @@ package evidence
 import (
 	"sync"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 
+	dbm "github.com/tendermint/tendermint/libs/db"
 	sm "github.com/tendermint/tendermint/state"
 	"github.com/tendermint/tendermint/types"
-	dbm "github.com/tendermint/tendermint/libs/db"
 )
 
 var mockState = sm.State{}
@@ -25,7 +24,7 @@ func initializeValidatorState(valAddr []byte, height int64) dbm.DB {
 	}
 	state := sm.State{
 		LastBlockHeight:             0,
-		LastBlockTime:               time.Now(),
+		LastBlockTime:               types.Now(),
 		Validators:                  valSet,
 		NextValidators:              valSet.CopyIncrementAccum(1),
 		LastHeightValidatorsChanged: 1,

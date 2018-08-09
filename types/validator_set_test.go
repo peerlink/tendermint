@@ -6,11 +6,10 @@ import (
 	"strings"
 	"testing"
 	"testing/quick"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 
-	crypto "github.com/tendermint/tendermint/crypto"
+	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/ed25519"
 	cmn "github.com/tendermint/tendermint/libs/common"
 )
@@ -383,7 +382,7 @@ func TestValidatorSetVerifyCommit(t *testing.T) {
 		ValidatorIndex:   0,
 		Height:           height,
 		Round:            0,
-		Timestamp:        time.Now().UTC(),
+		Timestamp:        Now(),
 		Type:             VoteTypePrecommit,
 		BlockID:          blockID,
 	}

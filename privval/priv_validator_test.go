@@ -235,7 +235,7 @@ func newVote(addr types.Address, idx int, height int64, round int, typ byte, blo
 		Height:           height,
 		Round:            round,
 		Type:             typ,
-		Timestamp:        time.Now().UTC(),
+		Timestamp:        types.Now(),
 		BlockID:          blockID,
 	}
 }
@@ -245,6 +245,6 @@ func newProposal(height int64, round int, partsHeader types.PartSetHeader) *type
 		Height:           height,
 		Round:            round,
 		BlockPartsHeader: partsHeader,
-		Timestamp:        time.Now().UTC(),
+		Timestamp:        types.Now(),
 	}
 }

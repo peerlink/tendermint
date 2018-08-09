@@ -2,9 +2,8 @@ package types
 
 import (
 	"testing"
-	"time"
 
-	amino "github.com/tendermint/go-amino"
+	"github.com/tendermint/go-amino"
 	"github.com/tendermint/tendermint/crypto/ed25519"
 	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/types"
@@ -27,7 +26,7 @@ func BenchmarkRoundStateDeepCopy(b *testing.B) {
 	for i := 0; i < nval; i++ {
 		precommits[i] = &types.Vote{
 			ValidatorAddress: types.Address(cmn.RandBytes(20)),
-			Timestamp:        time.Now(),
+			Timestamp:        types.Now(),
 			BlockID:          blockID,
 			Signature:        sig,
 		}
@@ -40,7 +39,7 @@ func BenchmarkRoundStateDeepCopy(b *testing.B) {
 	block := &types.Block{
 		Header: types.Header{
 			ChainID:         cmn.RandStr(12),
-			Time:            time.Now(),
+			Time:            types.Now(),
 			LastBlockID:     blockID,
 			LastCommitHash:  cmn.RandBytes(20),
 			DataHash:        cmn.RandBytes(20),
@@ -62,7 +61,7 @@ func BenchmarkRoundStateDeepCopy(b *testing.B) {
 	parts := block.MakePartSet(4096)
 	// Random Proposal
 	proposal := &types.Proposal{
-		Timestamp: time.Now(),
+		Timestamp: types.Now(),
 		BlockPartsHeader: types.PartSetHeader{
 			Hash: cmn.RandBytes(20),
 		},
@@ -73,8 +72,8 @@ func BenchmarkRoundStateDeepCopy(b *testing.B) {
 	// TODO: hvs :=
 
 	rs := &RoundState{
-		StartTime:          time.Now(),
-		CommitTime:         time.Now(),
+		StartTime:          types.Now(),
+		CommitTime:         types.Now(),
 		Validators:         vset,
 		Proposal:           proposal,
 		ProposalBlock:      block,

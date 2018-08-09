@@ -1,7 +1,5 @@
 package types
 
-import "time"
-
 func MakeCommit(blockID BlockID, height int64, round int,
 	voteSet *VoteSet,
 	validators []PrivValidator) (*Commit, error) {
@@ -16,7 +14,7 @@ func MakeCommit(blockID BlockID, height int64, round int,
 			Round:            round,
 			Type:             VoteTypePrecommit,
 			BlockID:          blockID,
-			Timestamp:        time.Now().UTC(),
+			Timestamp:        Now(),
 		}
 
 		_, err := signAddVote(validators[i], vote, voteSet)

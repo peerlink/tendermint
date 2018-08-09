@@ -320,7 +320,7 @@ func TestReactorRecordsVotes(t *testing.T) {
 		ValidatorAddress: val.Address,
 		Height:           2,
 		Round:            0,
-		Timestamp:        time.Now().UTC(),
+		Timestamp:        types.Now(),
 		Type:             types.VoteTypePrevote,
 		BlockID:          types.BlockID{},
 	}

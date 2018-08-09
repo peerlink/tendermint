@@ -1,15 +1,13 @@
 package commands
 
 import (
-	"time"
-
 	"github.com/spf13/cobra"
 
 	cfg "github.com/tendermint/tendermint/config"
+	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/p2p"
 	"github.com/tendermint/tendermint/privval"
 	"github.com/tendermint/tendermint/types"
-	cmn "github.com/tendermint/tendermint/libs/common"
 )
 
 // InitFilesCmd initialises a fresh Tendermint Core instance.
@@ -53,7 +51,7 @@ func initFilesWithConfig(config *cfg.Config) error {
 	} else {
 		genDoc := types.GenesisDoc{
 			ChainID:         cmn.Fmt("test-chain-%v", cmn.RandStr(6)),
-			GenesisTime:     time.Now(),
+			GenesisTime:     types.Now(),
 			ConsensusParams: types.DefaultConsensusParams(),
 		}
 		genDoc.Validators = []types.GenesisValidator{{

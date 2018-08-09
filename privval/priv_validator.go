@@ -324,7 +324,7 @@ func checkVotesOnlyDifferByTimestamp(lastSignBytes, newSignBytes []byte) (time.T
 	}
 
 	// set the times to the same value and check equality
-	now := types.CanonicalTime(time.Now())
+	now := types.CanonicalTime(types.Now())
 	lastVote.Timestamp = now
 	newVote.Timestamp = now
 	lastVoteBytes, _ := cdc.MarshalJSON(lastVote)
@@ -350,7 +350,7 @@ func checkProposalsOnlyDifferByTimestamp(lastSignBytes, newSignBytes []byte) (ti
 	}
 
 	// set the times to the same value and check equality
-	now := types.CanonicalTime(time.Now())
+	now := types.CanonicalTime(types.Now())
 	lastProposal.Timestamp = now
 	newProposal.Timestamp = now
 	lastProposalBytes, _ := cdc.MarshalJSON(lastProposal)

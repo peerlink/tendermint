@@ -6,7 +6,6 @@ import (
 	"runtime/debug"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -70,7 +69,7 @@ var (
 	part1       = partSet.GetPart(0)
 	part2       = partSet.GetPart(1)
 	seenCommit1 = &types.Commit{Precommits: []*types.Vote{{Height: 10,
-		Timestamp: time.Now().UTC()}}}
+		Timestamp: types.Now()}}}
 )
 
 // TODO: This test should be simplified ...
@@ -91,7 +90,7 @@ func TestBlockStoreSaveLoadBlock(t *testing.T) {
 	block := makeBlock(bs.Height()+1, state)
 	validPartSet := block.MakePartSet(2)
 	seenCommit := &types.Commit{Precommits: []*types.Vote{{Height: 10,
-		Timestamp: time.Now().UTC()}}}
+		Timestamp: types.Now()}}}
 	bs.SaveBlock(block, partSet, seenCommit)
 	require.Equal(t, bs.Height(), block.Header.Height, "expecting the new height to be changed")
 
@@ -103,7 +102,7 @@ func TestBlockStoreSaveLoadBlock(t *testing.T) {
 		Height:  1,
 		NumTxs:  100,
 		ChainID: "block_test",
-		Time:    time.Now(),
+		Time:    types.Now(),
 	}
 	header2 := header1
 	header2.Height = 4
@@ -111,7 +110,7 @@ func TestBlockStoreSaveLoadBlock(t *testing.T) {
 	// End of setup, test data
 
 	commitAtH10 := &types.Commit{Precommits: []*types.Vote{{Height: 10,
-		Timestamp: time.Now().UTC()}}}
+		Timestamp: types.Now()}}}
 	tuples := []struct {
 		block      *types.Block
 		parts      *types.PartSet
@@ -335,7 +334,7 @@ func TestBlockFetchAtHeight(t *testing.T) {
 
 	partSet := block.MakePartSet(2)
 	seenCommit := &types.Commit{Precommits: []*types.Vote{{Height: 10,
-		Timestamp: time.Now().UTC()}}}
+		Timestamp: types.Now()}}}
 
 	bs.SaveBlock(block, partSet, seenCommit)
 	require.Equal(t, bs.Height(), block.Header.Height, "expecting the new height to be changed")

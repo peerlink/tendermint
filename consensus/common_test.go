@@ -75,7 +75,7 @@ func (vs *validatorStub) signVote(voteType byte, hash []byte, header types.PartS
 		ValidatorAddress: vs.PrivValidator.GetAddress(),
 		Height:           vs.Height,
 		Round:            vs.Round,
-		Timestamp:        time.Now().UTC(),
+		Timestamp:        types.Now(),
 		Type:             voteType,
 		BlockID:          types.BlockID{hash, header},
 	}
@@ -423,7 +423,7 @@ func randGenesisDoc(numValidators int, randPower bool, minPower int64) (*types.G
 	sort.Sort(types.PrivValidatorsByAddress(privValidators))
 
 	return &types.GenesisDoc{
-		GenesisTime: time.Now(),
+		GenesisTime: types.Now(),
 		ChainID:     config.ChainID(),
 		Validators:  validators,
 	}, privValidators
